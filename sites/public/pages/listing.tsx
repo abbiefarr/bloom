@@ -173,6 +173,8 @@ export default class extends Component<ListingProps> {
       }
     }
 
+    let lastUpdatedDate = new Date(listing.updatedAt)
+
     return (
       <Layout>
         <Head>
@@ -241,11 +243,20 @@ export default class extends Component<ListingProps> {
           </div>
           <ListingDetails>
             <ListingDetailItem
+              imageAlt={t("listings.freshnessIcon")}
+              imageSrc="/images/listing-freshness.png"
+              title={t("listings.sections.freshnessTitle")}
+              subtitle={t("listings.sections.freshnessSubtitle")}
+              desktopClass="bg-primary-lighter"
+            >
+              This listing was last updated on {lastUpdatedDate.toDateString()}.
+            </ListingDetailItem>
+
+            <ListingDetailItem
               imageAlt={t("listings.eligibilityNotebook")}
               imageSrc="/images/listing-eligibility.svg"
               title={t("listings.sections.eligibilityTitle")}
               subtitle={t("listings.sections.eligibilitySubtitle")}
-              desktopClass="bg-primary-lighter"
             >
               <ul>
                 <ListSection
@@ -333,6 +344,7 @@ export default class extends Component<ListingProps> {
               imageSrc="/images/listing-features.svg"
               title={t("listings.sections.featuresTitle")}
               subtitle={t("listings.sections.featuresSubtitle")}
+              desktopClass="bg-primary-lighter"
             >
               <div className="listing-detail-panel">
                 <dl className="column-definition-list">
@@ -380,7 +392,6 @@ export default class extends Component<ListingProps> {
                   imageSrc="/images/listing-neighborhood.svg"
                   title={t("listings.sections.neighborhoodTitle")}
                   subtitle={t("listings.sections.neighborhoodSubtitle")}
-                  desktopClass="bg-primary-lighter"
                 >
                   <div className="listing-detail-panel">
                     <ListingMap address={listing.property.buildingAddress} listing={listing} />
@@ -394,6 +405,7 @@ export default class extends Component<ListingProps> {
                 imageSrc="/images/listing-legal.svg"
                 title={t("listings.sections.additionalInformationTitle")}
                 subtitle={t("listings.sections.additionalInformationSubtitle")}
+                desktopClass="bg-primary-lighter"
               >
                 <div className="listing-detail-panel">
                   {listing.requiredDocuments && (
