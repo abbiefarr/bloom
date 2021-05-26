@@ -1,6 +1,6 @@
 import Layout from "./application"
 
-export default (props) => {
+export default function FormsLayout(props) {
   return (
     <Layout>
       <section className="p-px bg-gray-300">
