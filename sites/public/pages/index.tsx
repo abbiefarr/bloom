@@ -58,7 +58,7 @@ export default function Home(props: IndexProps) {
         title={heroTitle}
         buttonTitle={t("welcome.seeRentalListings")}
         buttonLink="/listings"
-        listings={props.listings}
+        listings={props.listings.data}
       />
       <div className="homepage-extra">
         <MarkdownSection fullwidth={true}>
@@ -82,6 +82,7 @@ export async function getStaticProps() {
   try {
     const response = await axios.get(process.env.listingServiceUrl)
     listings = response.data
+    console.log(listings)
   } catch (error) {
     console.error(error)
   }
