@@ -67,14 +67,16 @@ export async function getStaticProps() {
   try {
     const response = await axios.get(process.env.listingServiceUrl)
     const nowTime = moment()
-    openListings = response.data.filter((listing: Listing) => {
+    const test = response.data.data
+    console.log(test)
+    openListings = response.data.data.filter((listing: Listing) => {
       return (
         openDateState(listing) ||
         nowTime <= moment(listing.applicationDueDate) ||
         listing.applicationDueDate == null
       )
     })
-    closedListings = response.data.filter((listing: Listing) => {
+    closedListings = response.data.data.filter((listing: Listing) => {
       return nowTime > moment(listing.applicationDueDate)
     })
   } catch (error) {
